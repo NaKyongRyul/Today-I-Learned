@@ -1,5 +1,5 @@
 # Today I Learned
 
 # 언어
-  # Javascript
+  ## Javascript
   + asd
