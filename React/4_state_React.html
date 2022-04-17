@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <!-- react js는 엔진이다. interactive한 UI를 만들 수 있게 한다. -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react@17/umd/react.production.min.js"
+  ></script>
+  <!-- react-dom은 React element들을 html body에 둘 수 있도록 해준다.  -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+  ></script>
+  <!-- babel 사용 -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    let counter = 0;
+    function countUp() {
+      counter += 1;
+      render();
+    }
+    function render() {
+      ReactDOM.render(<Container />, root); // render의 의미는 React element를 가지고 html로 만들어 배치한다는 것이다. -> 사용자에게 보여준다.
+    }
+    // 컴포넌트를 사용할 떄는 무조건 대문자로 시작해야 한다. 아니면 그냥 html 태그로 인식한다.
+    const Container = () => (
+      <div>
+        <h3>Total Clicks: {counter}</h3>
+        <button onClick={countUp}>Click me</button>
+      </div>
+    );
+    // 위에 countUp과 Container는 함수이므로 이게 먼저 실행된다.
+    render();
+  </script>
+</html>

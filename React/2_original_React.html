@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <!-- react js는 엔진이다. interactive한 UI를 만들 수 있게 한다. -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react@17/umd/react.production.min.js"
+  ></script>
+  <!-- react-dom은 React element들을 html body에 둘 수 있도록 해준다.  -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+  ></script>
+  <script>
+    const root = document.getElementById("root");
+    const h3 = React.createElement(
+      "h3",
+      {
+        onMouseEnter: () => console.log("mouse enter"),
+      },
+      "Hello"
+    ); // createElement() 안에 적는 것은 html 태그와 같은 이름이여야 한다.
+    const btn = React.createElement(
+      "button",
+      {
+        onClick: () => console.log("I'm clicked"),
+      },
+      "Click me"
+    );
+    const container = React.createElement("div", null, [h3, btn]);
+    ReactDOM.render(container, root); // render의 의미는 React element를 가지고 html로 만들어 배치한다는 것이다. -> 사용자에게 보여준다.
+  </script>
+</html>
