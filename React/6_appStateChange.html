@@ -18,18 +18,21 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    // 컴포넌트를 사용할 떄는 무조건 대문자로 시작해야 한다. 아니면 그냥 html 태그로 인식한다.
     function App() {
-      // useState() 안에 들어가는 것은 데이터와 그 값을 바꾸는 함수이다.
-      const [counter, modifier] = React.useState(0);
+      const [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        // setCounter(counter + 1);
+
+        // 아래는 확실히 현재 값이라는 것을 보장하므로 위에 것보다 안전하다.
+        setCounter((current) => current + 1);
+      };
       return (
         <div>
           <h3>Total Clicks: {counter}</h3>
-          <button>Click me</button>
+          <button onClick={onClick}>Click me</button>
         </div>
       );
     }
-    // 위에 countUp과 Container는 함수이므로 이게 먼저 실행된다.
-    ReactDOM.render(<App />, root); // render의 의미는 React element를 가지고 html로 만들어 배치한다는 것이다. -> 사용자에게 보여준다.
+    ReactDOM.render(<App />, root);
   </script>
 </html>
