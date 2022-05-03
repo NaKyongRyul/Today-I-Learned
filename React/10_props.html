@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <!-- react js는 엔진이다. interactive한 UI를 만들 수 있게 한다. -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react@17/umd/react.production.min.js"
+  ></script>
+  <!-- react-dom은 React element들을 html body에 둘 수 있도록 해준다.  -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+  ></script>
+  <!-- babel 사용 -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    function Btn({ name }) {
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+          }}
+        >
+          {name};
+        </button>
+      );
+    }
+    function App() {
+      return (
+        <div>
+          <Btn name="Save Changes" />
+          <Btn name="Confirm" />
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

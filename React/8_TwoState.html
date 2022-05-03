@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <!-- react js는 엔진이다. interactive한 UI를 만들 수 있게 한다. -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react@17/umd/react.production.min.js"
+  ></script>
+  <!-- react-dom은 React element들을 html body에 둘 수 있도록 해준다.  -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+  ></script>
+  <!-- babel 사용 -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    function App() {
+      const [amount, setAmount] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false);
+      const onChange = (event) => {
+        setAmount(event.target.value);
+      };
+      const reset = () => setAmount(0);
+      const onFlip = () => {
+        reset();
+        setFlipped((current) => !current);
+      };
+      return (
+        <div>
+          <h1 className="h1">Super Converter</h1>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              // input의 value는 state, state의 default 값은 0
+              value={flipped ? amount * 60 : amount}
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+              disabled={flipped}
+            />
+          </div>
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input
+              value={flipped ? amount : Math.round(amount / 60)}
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              disabled={!flipped}
+              onChange={onChange}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>Flip</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

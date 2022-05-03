@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    function Btn({ text, fontSize = 20 }) {
+      console.log(text + " was rendered");
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize,
+          }}
+        >
+          {text};
+        </button>
+      );
+    }  
+
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired,
+      fontsize: PropTypes.number,
+    };
+
+    // 부모의 상태가 바뀌면 모든 자식이 리랜더링되지만 memo를 사용해서 바뀌는 props 부분만 리랜더링
+    function App() {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Revert Changes");
+      return (
+        <div>
+          <Btn text={"Save Changes"} fontSize={14} />
+          <Btn text={"Continue"} />
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
